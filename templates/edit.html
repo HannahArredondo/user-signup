@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action="/confirmation" method="post">
+    <label>
+        Username:
+        <input type="text" name="username"/>
+    </label>
+	{% if error %}
+	<p class='error'>{{ error }}</p>
+	{% endif %}
+	<br>
+    <label>
+        Password:
+        <input type="password" name="password1"/>
+    </label>
+	{% if error %}
+	<p class='error1'>{{ error }}</p>
+	{% endif %}
+	<br>
+    <label>
+        Confirm password:
+        <input type="password" name="password2"/>
+    </label>
+	{% if error %}
+	<p class='error2'>{{ error }}</p>
+	{% endif %}
+	<br>
+    <label>
+        Email (optional):
+        <input type="email" name="useremail"/>
+    </label>
+	<br>
+    <input type="submit" value="Submit"/>
+</form>
+
+
+
+{% endblock %}
