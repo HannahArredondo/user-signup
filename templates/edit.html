@@ -3,36 +3,51 @@
 {% block content %}
 
 <form action="/confirmation" method="post">
-    <label>
-        Username:
-        <input type="text" name="username"/>
-    </label>
-	{% if error %}
-	<p class='error'>{{ error }}</p>
-	{% endif %}
-	<br>
-    <label>
-        Password:
-        <input type="password" name="password1"/>
-    </label>
-	{% if error %}
-	<p class='error1'>{{ error }}</p>
-	{% endif %}
-	<br>
-    <label>
-        Confirm password:
-        <input type="password" name="password2"/>
-    </label>
-	{% if error %}
-	<p class='error2'>{{ error }}</p>
-	{% endif %}
-	<br>
-    <label>
-        Email (optional):
-        <input type="email" name="useremail"/>
-    </label>
-	<br>
-    <input type="submit" value="Submit"/>
+	<table align="center">
+		<tr>
+			<td>
+				<label for = "username"> Username:</label>
+			</td>
+			<td>
+				<input type="text" name="username" value= "{{user_name}}"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="password1">Password:</label>
+			</td>
+			<td>
+				<input type="password" name="password1"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="password2">Confirm password: </label>
+			</td>
+			<td>
+				<input type="password" name="password2"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="useremail"> Email (optional):</label>
+			</td>
+			<td>
+				<input type="email" name="useremail"/>
+				
+			</td>
+		</tr>
+		<tr>
+			<td>
+			</td>
+			<td>
+				<input type="submit" value="Submit"/>
+				{% if error %}
+				<p class='error'>{{ error }}</p>
+				{% endif %}
+			</td>
+		</tr>
+	</table>
 </form>
 
 

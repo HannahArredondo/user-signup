@@ -12,17 +12,24 @@ def confirmation():
 	pass1 = request.form['password1']
 	pass2 = request.form['password2']
 
-	if user_name=="":
-		error = "Please enter your user_name."
-		return redirect("/?error=" + error)	
+	if len(user_name) < 3:
+		error = "Invalid Username"
+		return render_template('edit.html', user_name=user_name, error= error)
+	
+	elif " " in user_name:
+		error = "Invalid Username no space allowed!"
+		return render_template('edit.html', user_name=user_name, error= error)
+		
+	elif " " in pass1 or len(pass1) < 3:
+		error = "Invalid password"
+		return render_template('edit.html', user_name=user_name, error= error)
+	
+	elif pass1 != pass2:
+		error = "Passwords must match"
+		return render_template('edit.html', user_name=user_name, error= error)
 
-	
-	elif pass1 == pass2:
-		return render_template('confirmation.html', user=user_name)	
-	
 	else:
-		error = "Please confirm password."
-		return redirect("/?error2=" + error)
+		return render_template('confirmation.html', user=user_name)
 	
 
 @app.route("/")
