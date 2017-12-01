@@ -11,6 +11,9 @@
 			<td>
 				<input type="text" name="username" value= "{{user_name}}"/>
 			</td>
+			<td>
+				<span class='error'>{{ user_error }}</span>
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -18,6 +21,9 @@
 			</td>
 			<td>
 				<input type="password" name="password1"/>
+			</td>
+			<td>
+				<span class='error'>{{ password1_error }}</span>
 			</td>
 		</tr>
 		<tr>
@@ -27,6 +33,9 @@
 			<td>
 				<input type="password" name="password2"/>
 			</td>
+			<td>
+				<span class='error'>{{ password2_error }}</span>
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -34,7 +43,9 @@
 			</td>
 			<td>
 				<input type="email" name="useremail"/>
-				
+			</td>
+			<td>
+				<span class='error'>{{ email_error }}</span>
 			</td>
 		</tr>
 		<tr>
@@ -45,6 +56,8 @@
 				{% if error %}
 				<p class='error'>{{ error }}</p>
 				{% endif %}
+			</td>
+			<td>
 			</td>
 		</tr>
 	</table>

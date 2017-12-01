@@ -11,26 +11,37 @@ def confirmation():
 	user_name = request.form['username']
 	pass1 = request.form['password1']
 	pass2 = request.form['password2']
-
-	if len(user_name) < 3:
-		error = "Invalid Username"
-		return render_template('edit.html', user_name=user_name, error= error)
 	
-	elif " " in user_name:
-		error = "Invalid Username no space allowed!"
-		return render_template('edit.html', user_name=user_name, error= error)
-		
-	elif " " in pass1 or len(pass1) < 3:
-		error = "Invalid password"
-		return render_template('edit.html', user_name=user_name, error= error)
-	
-	elif pass1 != pass2:
-		error = "Passwords must match"
-		return render_template('edit.html', user_name=user_name, error= error)
+	user_error=""
+	password1_error=""
+	password2_error=""
+	check = [user_name, pass1, pass2]
 
+	for thing in check:
+		if len(user_name) < 3 or " " in user_name:
+			user_error = "Invalid Username"
+		else:
+			error = ""
+			
+	for thing in check:
+		if  " " in pass1 or len(pass1) < 3:
+			password1_error = "Invalid password"
+		else:
+			error = ""
+	
+	for thing in check:
+		if pass1 != pass2:
+			password2_error = "Passwords must match"
+		else:
+			error = ""
+	
+	
+	if not user_error and not password1_error and not password2_error:
+		return render_template('confirmation.html', user_name = user_name)
+	
 	else:
-		return render_template('confirmation.html', user=user_name)
-	
+		return render_template('edit.html', user_name = user_name, user_error=user_error,
+		password1_error=password1_error, password2_error=password2_error)
 
 @app.route("/")
 def index():
