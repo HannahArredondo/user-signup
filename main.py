@@ -11,14 +11,16 @@ def confirmation():
 	user_name = request.form['username']
 	pass1 = request.form['password1']
 	pass2 = request.form['password2']
+	user_email = request.form['useremail']
 	
 	user_error=""
 	password1_error=""
 	password2_error=""
-	check = [user_name, pass1, pass2]
+	email_error = ""
+	check = [user_name, pass1, pass2, email_error]
 
 	for thing in check:
-		if len(user_name) < 3 or " " in user_name:
+		if len(user_name) < 3 or " " in user_name or len(user_name) > 20:
 			user_error = "Invalid Username"
 		else:
 			error = ""
@@ -30,18 +32,23 @@ def confirmation():
 			error = ""
 	
 	for thing in check:
-		if pass1 != pass2:
+		if pass1 != pass2 or not pass2:
 			password2_error = "Passwords must match"
 		else:
 			error = ""
-	
-	
+			
+	for thing in check:
+		if "@" not in user_name and len(user_email) > 1:
+			email_error = "Email not valid"
+		else:
+			error = ""
+
 	if not user_error and not password1_error and not password2_error:
 		return render_template('confirmation.html', user_name = user_name)
 	
 	else:
 		return render_template('edit.html', user_name = user_name, user_error=user_error,
-		password1_error=password1_error, password2_error=password2_error)
+		password1_error=password1_error, password2_error=password2_error, email_error= email_error)
 
 @app.route("/")
 def index():
